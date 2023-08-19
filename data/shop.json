@@ -2,7 +2,7 @@
     {
         "id": "1",
         "title": "Item 1",
-        "name": "Name 1",
+        "item": "Name 1",
         "image": "image1.jpg",
         "description": "Description 1"
     },
@@ -10,7 +10,7 @@
     {
         "id": "2",
         "title": "Item 2",
-        "name": "Name 2",
+        "item": "Name 2",
         "image": "image2.jpg",
         "description": "Description 2"
     },
@@ -18,7 +18,7 @@
     {
         "id": "3",
         "title": "Item 3",
-        "name": "Name 3",
+        "item": "Name 3",
         "image": "image3.jpg",
         "description": "Description 3"
     },
@@ -26,7 +26,7 @@
     {
         "id": "4",
         "title": "Item 4",
-        "name": "Name 4",
+        "item": "Name 4",
         "image": "image4.jpg",
         "description": "Description 4"
     },
@@ -34,7 +34,7 @@
     {
         "id": "5",
         "title": "Item 5",
-        "name": "Name 5",
+        "item": "Name 5",
         "image": "image5.jpg",
         "description": "Description 5"
     }
