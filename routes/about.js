@@ -6,12 +6,16 @@ const dataPath = path.join(__dirname, '..', 'data', 'about.json');
 const rawData = fs.readFileSync(dataPath);
 const data = JSON.parse(rawData);
 
+// Route to get list of people
+router.get('/about', (req, res) => {
+  res.json(data);
+});
 
 function getAboutById(id) {
   return data.find((aboutItem) => aboutItem.id === id.toString());
 }
 
-// Route to get item by id
+// Route to get person by id
 router.get('/about/:id', (req, res) => {
   const aboutId = req.params.id;
   const about = getAboutById(aboutId);
