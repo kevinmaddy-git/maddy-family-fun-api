@@ -22,4 +22,9 @@ router.get('/video/:id', (req, res) => {
   }
 });
 
+// Route to get all videos
+router.get('/video', (req, res) => {
+  res.json(data);
+});
+
 module.exports = router;
