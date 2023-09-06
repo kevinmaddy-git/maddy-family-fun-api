@@ -11,19 +11,17 @@ const connection = mysql.createConnection({
   database: 'maddy_shop'
 });
 
-// Get all shop items
 router.get('/shop', (req, res) => {
-    connection.query('SELECT * FROM shop_items', (err, results) => {
-      if (err) {
-        console.error('Error fetching shop items:', err);
-        return res.status(500).json({ error: 'Error fetching shop items' });
-      }
-      console.log('Fetched shop items:', results);
-      res.json(results);
-    });
+  connection.query('SELECT * FROM shop_items', (err, results) => {
+    if (err) {
+      console.error('Error fetching shop items:', err);
+      return res.status(500).json({ error: 'Error fetching shop items' });
+    }
+    console.log('Fetched shop items:', results);
+    res.json(results);
   });
+});
 
-// Add item to cart
 router.post('/cart', (req, res) => {
   const { item_id, quantity } = req.body;
   connection.query(
@@ -36,7 +34,6 @@ router.post('/cart', (req, res) => {
   );
 });
 
-// Get cart items
 router.get('/cart', (req, res) => {
   connection.query(
     'SELECT cart_items.id, shop_items.name, shop_items.price, cart_items.quantity FROM cart_items INNER JOIN shop_items ON cart_items.item_id = shop_items.id',
@@ -45,6 +42,16 @@ router.get('/cart', (req, res) => {
       res.json(results);
     }
   );
+});
+
+router.delete('/cart', (req, res) => {
+  connection.query('DELETE FROM cart_items', (err, result) => {
+    if (err) {
+      console.error('Error deleting items from cart:', err);
+      return res.status(500).json({ error: 'Error deleting items from cart' });
+    }
+    res.json({ message: 'All items removed from cart' });
+  });
 });
 
 module.exports = router;
