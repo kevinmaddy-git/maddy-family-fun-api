@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+
+// Middleware to parse JSON request bodies
 router.use(bodyParser.json());
 
+// Create a MySQL database connection
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
@@ -11,6 +14,7 @@ const connection = mysql.createConnection({
   database: 'maddy_shop'
 });
 
+// Route to fetch shop items
 router.get('/shop', (req, res) => {
   connection.query('SELECT * FROM shop_items', (err, results) => {
     if (err) {
@@ -22,6 +26,7 @@ router.get('/shop', (req, res) => {
   });
 });
 
+// Route to add an item to the shopping cart
 router.post('/cart', (req, res) => {
   const { item_id, quantity } = req.body;
   connection.query(
@@ -34,6 +39,7 @@ router.post('/cart', (req, res) => {
   );
 });
 
+// Route to fetch items from the shopping cart
 router.get('/cart', (req, res) => {
   connection.query(
     'SELECT cart_items.id, shop_items.name, shop_items.price, cart_items.quantity FROM cart_items INNER JOIN shop_items ON cart_items.item_id = shop_items.id',
@@ -44,6 +50,7 @@ router.get('/cart', (req, res) => {
   );
 });
 
+// Route to delete all items from the shopping cart
 router.delete('/cart', (req, res) => {
   connection.query('DELETE FROM cart_items', (err, result) => {
     if (err) {
